@@ -1,0 +1,157 @@
+public function kemaskini_aktiviti(Request $request)
+    {
+        $keterangan = $request->keterangan;
+        $nama = $request->nama;
+        $nokp = $request->nokp;
+        $bilangan_hari = $request->bilangan_hari;
+        $bilangan_sesi = $request->bilangan_sesi;
+        $tarikh_mula = $request->tarikh_mula;
+        $tarikh_tamat = $request->tarikh_tamat;
+        $lokasi = $request->lokasi;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $masa_mula = $request->masa_mula;
+        $masa_tamat = $request->masa_tamat;
+        $transid_aktiviti = $request->transid_aktiviti;
+        $id_aktiviti = $request->id_aktiviti;
+
+            if ($bilangan_hari == "1") {
+                $tarikh_tamat = $tarikh_mula;
+            }
+
+            $i = 0;
+
+
+        $obj = new stdClass();
+        $create_by = $request->uid;
+        $nokp = $request->nokp;
+
+        $aktiviti = Aktiviti::find($id_aktiviti);
+        $aktiviti->update([
+            'transid_aktiviti' => $transid_aktiviti ?? $aktiviti->transid_aktiviti,
+            'nama_aktiviti' => $nama ?? $aktiviti->nama_aktiviti,
+            'tarikh_mula' => $tarikh_mula ?? $aktiviti->tarikh_mula,
+            'tarikh_tamat' => $tarikh_tamat ?? $aktiviti->tarikh_tamat,
+            'masa_mula' => $masa_mula ?? $aktiviti->masa_mula,
+            'masa_tamat' => $masa_tamat ?? $aktiviti->masa_tamat,
+            'lokasi' => $lokasi ?? $aktiviti->lokasi,
+            'keterangan' => $keterangan ?? $aktiviti->keterangan,
+            'latitude' => $latitude ?? $aktiviti->latitude,
+            'longitude' => $longitude ?? $aktiviti->longitude,
+            'bilangan_sesi' => $bilangan_sesi ?? $aktiviti->bilangan_sesi,
+            'create_by' => $create_by ?? $aktiviti->create_by,
+            'nokp' => $nokp ?? $aktiviti->nokp,
+        ]);
+
+        $urusetia = Urusetia::where('id_aktiviti', '=' ,$id_aktiviti)->first();
+        $urusetia->update([
+            'transid_aktiviti' => $transid_aktiviti ?? $urusetia->transid_aktiviti,
+            'urusetia' => $nokp ?? $urusetia->urusetia,
+            'create_by' => $create_by ?? $urusetia->create_by,
+        ]);
+
+        if ($bilangan_sesi == "1") {
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "1";
+            $sesi = "1";
+            $masa_mula = $request->masa_mula1;
+            $masa_tamat = $request->masa_tamat1;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+
+        } elseif ($bilangan_sesi == "2") {
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "1";
+            $sesi = "1";
+            $masa_mula = $request->masa_mula1;
+            $masa_tamat = $request->masa_tamat1;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "2";
+            $sesi = "2";
+            $masa_mula = $request->masa_mula2;
+            $masa_tamat = $request->masa_tamat2;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+
+        } elseif ($bilangan_sesi == "3") {
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "1";
+            $sesi = "1";
+            $masa_mula = $request->masa_mula1;
+            $masa_tamat = $request->masa_tamat1;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "2";
+            $sesi = "2";
+            $masa_mula = $request->masa_mula2;
+            $masa_tamat = $request->masa_tamat2;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+
+            $transid_sesi = strtotime(date("Y-m-d H:i:s")) . rand(10000, 99999) . "3";
+            $sesi = "3";
+            $masa_mula = $request->masa_mula3;
+            $masa_tamat = $request->masa_tamat3;
+
+            $msesi = Sesi::where('aktiviti_id', '=' ,$id_aktiviti)->first();
+            $msesi->update([
+                'transid_aktiviti' => $transid_aktiviti ?? $msesi->transid_aktiviti,
+                'transid_sesi' => $transid_sesi ?? $msesi->transid_sesi,
+                'sesi' => $sesi ?? $msesi->sesi,
+                'masa_mula' => $masa_mula ?? $msesi->masa_mula,
+                'masa_tamat' => $masa_tamat ?? $msesi->masa_tamat,
+                'aktiviti_id' => $id_aktiviti ?? $msesi->aktiviti_id,
+                'status_aktif' => '1' ?? $msesi->status_aktif,
+            ]);
+        }
+
+        $obj->kod = 0;
+        $obj->message = "Aktiviti baru telah dikemaskini";
+        echo json_encode($obj);
+
+    }
